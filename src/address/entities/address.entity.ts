@@ -1,5 +1,5 @@
-import { CityEntity } from "src/city/entities/city.entity";
-import { UserEntity } from "src/user/entities/user.entity";
+import { CityEntity } from "../../city/entities/city.entity";
+import { UserEntity } from "../../user/entities/user.entity";
 import { ManyToOne, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, JoinColumn } from "typeorm";
 
 @Entity({name: 'address'})

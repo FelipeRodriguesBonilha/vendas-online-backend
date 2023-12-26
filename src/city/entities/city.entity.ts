@@ -1,6 +1,5 @@
-import { AddressEntity } from "src/address/entities/address.entity";
-import { StateEntity } from "src/state/entities/state.entity";
-import { UserEntity } from "src/user/entities/user.entity";
+import { AddressEntity } from "../../address/entities/address.entity";
+import { StateEntity } from "../../state/entities/state.entity";
 import { ManyToOne, OneToMany, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, JoinColumn } from "typeorm";
 
 @Entity({name: 'city'})

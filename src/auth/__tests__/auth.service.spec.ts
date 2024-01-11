@@ -57,4 +57,10 @@ describe('CityService', () => {
 
     expect(service.login(loginUserMock)).rejects.toThrowError();
   });
+
+  it('should return error in userService', async () => {
+    jest.spyOn(userService, 'findUserByEmail').mockRejectedValue(new Error());
+
+    expect(service.login(loginUserMock)).rejects.toThrowError();
+  });
 });

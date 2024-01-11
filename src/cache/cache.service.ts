@@ -9,14 +9,14 @@ export class CacheService {
 
     async getCache<T>(key: string, functionRequest: () => Promise<T>): Promise<T> {
 
-        const allData: T = await this.cacheManager.get('key');
+        const allData: T = await this.cacheManager.get(key);
 
         if(allData){
             return allData;
         }
 
         const list: T = await functionRequest();
-        await this.cacheManager.set('key', list);
+        await this.cacheManager.set(key, list);
 
         return list;
     }

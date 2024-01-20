@@ -8,6 +8,7 @@ import { createProductMock } from '../__mocks__/createProduct.mock';
 import { CategoryService } from '../../category/category.service';
 import { categoryMock } from '../../category/__mocks__/category.mock';
 import { returnDeleteMock } from '../../__mocks__/returnDelete.mock';
+import { updateProductMock } from '../__mocks__/updateProduct.mock';
 
 describe('ProductService', () => {
   let service: ProductService;
@@ -94,5 +95,18 @@ describe('ProductService', () => {
     const deleted = await service.deleteProduct(productMock.id);
 
     expect(deleted).toEqual(returnDeleteMock);
+  });
+
+  //updateproduct
+  it('should return product after update', async () => {
+    const product = await service.updateProduct(updateProductMock, productMock.id);
+
+    expect(product).toEqual(productMock);
+  });
+
+  it('should return error in update product', async () => {
+    jest.spyOn(productRepository, 'save').mockRejectedValue(new Error())
+
+    expect(service.updateProduct(updateProductMock, productMock.id)).rejects.toThrowError();
   });
 });

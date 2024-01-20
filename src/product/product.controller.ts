@@ -1,9 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Roles } from 'src/decorators/roles.decorator';
 import { UserType } from 'src/user/enum/userType.enum';
 import { ProductEntity } from './entities/product.entity';
 import { ProductService } from './product.service';
 import { ReturnProductDto } from './dtos/returnProduct.dto';
+import { CreateProductDto } from './dtos/createProduct.dto';
 
 @Roles(UserType.Admin, UserType.User)
 @Controller('product')
@@ -17,4 +18,12 @@ export class ProductController {
     async findAllProducts(): Promise<ReturnProductDto[]> {
         return (await this.productService.findAllProducts()).map((product) => new ReturnProductDto(product));
     }
+
+    @Roles(UserType.Admin)
+    @UsePipes(ValidationPipe)
+    @Post()
+    async createProduct(@Body() createProductDto: CreateProductDto): Promise<ProductEntity> {
+        return this.productService.createProduct(createProductDto);
+    }
+    
 }

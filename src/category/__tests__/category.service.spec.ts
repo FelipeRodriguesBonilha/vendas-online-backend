@@ -36,7 +36,7 @@ describe('CategoryService', () => {
     expect(categoryRepository).toBeDefined();
   });
 
-  it('should return list of categories', async () => {
+  it('should return list with all categories', async () => {
     const categories = await service.findAllCategories();
 
     expect(categories).toEqual([categoryMock]);

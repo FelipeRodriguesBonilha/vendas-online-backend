@@ -53,7 +53,7 @@ describe('ProductService', () => {
     expect(products).toEqual([productMock]);
   });
 
-  it('should return error in list products empty', async () => {
+  it('should return error in list products if empty', async () => {
     jest.spyOn(productRepository, 'find').mockResolvedValue([]);
 
     expect(service.findAllProducts()).rejects.toThrowError();
